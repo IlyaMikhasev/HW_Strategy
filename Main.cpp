@@ -3,22 +3,24 @@
 class ITruck {
 public:
 	virtual void Unloading() = 0;
+	~virtual ITruck(){}
 };
 class Train : public ITruck {
 public:
 	void Unloading() {
-		std::cout << "Ðàçãðóçêà êðàíîì";
+		std::cout << "ÃÃ Ã§Ã£Ã°Ã³Ã§ÃªÃ  ÃªÃ°Ã Ã­Ã®Ã¬";
 	}
 };
 class Caravan : public ITruck {
 public:
 	void Unloading() {
-		std::cout << "Àâòîðàçãðóçêà";
+		std::cout << "Ã€Ã¢Ã²Ã®Ã°Ã Ã§Ã£Ã°Ã³Ã§ÃªÃ ";
 	}
 };
 class IStock {
 public:
 	virtual void PlacementWarehouse() = 0;
+	~virual IStock(){}
 };
 class Hangar :public IStock {
 public:
@@ -26,7 +28,7 @@ public:
 	Hangar() = delete;
 	void PlacementWarehouse() {
 		_truck->Unloading();
-		std::cout << " è ðàçìåùåíèå â àíãàðå\n";
+		std::cout << " Ã¨ Ã°Ã Ã§Ã¬Ã¥Ã¹Ã¥Ã­Ã¨Ã¥ Ã¢ Ã Ã­Ã£Ã Ã°Ã¥\n";
 	}
 private:
 	std::shared_ptr<ITruck> _truck;
@@ -37,7 +39,7 @@ public:
 	Barge() = delete;
 	void PlacementWarehouse() {
 		_truck->Unloading();
-		std::cout << " è ðàçìåùåíèå íà áàðæå\n";
+		std::cout << " Ã¨ Ã°Ã Ã§Ã¬Ã¥Ã¹Ã¥Ã­Ã¨Ã¥ Ã­Ã  Ã¡Ã Ã°Ã¦Ã¥\n";
 	}
 private:
 	std::shared_ptr<ITruck> _truck;
