@@ -3,7 +3,7 @@
 class ITruck {
 public:
 	virtual void Unloading() = 0;
-	~virtual ITruck(){}
+	virtual ~ITruck(){}
 };
 class Train : public ITruck {
 public:
@@ -20,7 +20,7 @@ public:
 class IStock {
 public:
 	virtual void PlacementWarehouse() = 0;
-	~virtual IStock(){}
+	virtual ~IStock(){}
 };
 class Hangar :public IStock {
 public:
