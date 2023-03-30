@@ -20,7 +20,7 @@ public:
 class IStock {
 public:
 	virtual void PlacementWarehouse() = 0;
-	~virual IStock(){}
+	~virtual IStock(){}
 };
 class Hangar :public IStock {
 public:
