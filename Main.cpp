@@ -7,13 +7,13 @@ public:
 class Train : public ITruck {
 public:
 	void Unloading() {
-		std::cout << "Разгрузка краном\n";
+		std::cout << "Разгрузка краном";
 	}
 };
 class Caravan : public ITruck {
 public:
 	void Unloading() {
-		std::cout << "Авторазгрузка\n";
+		std::cout << "Авторазгрузка";
 	}
 };
 class IStock {
@@ -22,25 +22,33 @@ public:
 };
 class Hangar :public IStock {
 public:
+	Hangar(std::shared_ptr<ITruck> truck) :_truck(truck) {}
+	Hangar() = delete;
 	void PlacementWarehouse() {
-		std::cout << "Размещение в ангаре\n";
-	}
-};
-class Barge : public IStock {
-public:
-	void PlacementWarehouse() {
-		std::cout << "Размещение на барже\n";
-	}
-};
-class Accaunting {
-public:
-	Accaunting(std::shared_ptr<ITruck> truck, std::shared_ptr <IStock> stock) :_truck(truck), _stock(stock) {}
-	void AccauntingCar() {
 		_truck->Unloading();
-		_stock->PlacementWarehouse();
+		std::cout << " и размещение в ангаре\n";
 	}
 private:
 	std::shared_ptr<ITruck> _truck;
+};
+class Barge : public IStock {
+public:
+	Barge(std::shared_ptr<ITruck> truck) :_truck(truck) {}
+	Barge() = delete;
+	void PlacementWarehouse() {
+		_truck->Unloading();
+		std::cout << " и размещение на барже\n";
+	}
+private:
+	std::shared_ptr<ITruck> _truck;
+};
+class Accaunting {
+public:
+	Accaunting( std::shared_ptr <IStock> stock) : _stock(stock) {}
+	void AccauntingCar() {
+		_stock->PlacementWarehouse();
+	}
+private:
 	std::shared_ptr <IStock> _stock;
 };
 
@@ -58,11 +66,11 @@ int main() {
 	std::cout << "Enter Stock (hangar,barge):";
 	std::cin >> config;
 	if (config == "hangar")
-		stock = std::make_shared<Hangar>();
+		stock = std::make_shared<Hangar>(truck);
 	else if (config == "barge")
-		stock = std::make_shared<Barge>();
+		stock = std::make_shared<Barge>(truck);
 	
-	Accaunting acc(truck, stock);
+	Accaunting acc(stock);
 	acc.AccauntingCar();
 	return 0;
 }
