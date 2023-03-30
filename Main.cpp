@@ -7,13 +7,13 @@ public:
 };
 class Train : public ITruck {
 public:
-	void Unloading() {
+	void Unloading() override{
 		std::cout << "Ðàçãðóçêà êðàíîì";
 	}
 };
 class Caravan : public ITruck {
 public:
-	void Unloading() {
+	void Unloading()override {
 		std::cout << "Àâòîðàçãðóçêà";
 	}
 };
@@ -26,7 +26,7 @@ class Hangar :public IStock {
 public:
 	Hangar(std::shared_ptr<ITruck> truck) :_truck(truck) {}
 	Hangar() = delete;
-	void PlacementWarehouse() {
+	void PlacementWarehouse()override {
 		_truck->Unloading();
 		std::cout << " è ðàçìåùåíèå â àíãàðå\n";
 	}
@@ -37,7 +37,7 @@ class Barge : public IStock {
 public:
 	Barge(std::shared_ptr<ITruck> truck) :_truck(truck) {}
 	Barge() = delete;
-	void PlacementWarehouse() {
+	void PlacementWarehouse()override {
 		_truck->Unloading();
 		std::cout << " è ðàçìåùåíèå íà áàðæå\n";
 	}
